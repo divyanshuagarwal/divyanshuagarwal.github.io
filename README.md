@@ -7,9 +7,15 @@ Live at: https://divyanshuagarwal.github.io
 ## Structure
 
 ```
-index.html          # All page content, organized as sections (hero, about, projects, services, tools, clients, why-hire, contact)
-styles/style.css     # Global stylesheet (dark glassmorphism theme, CSS custom properties for colors/fonts)
-scripts/app.js       # Vanilla JS (smooth scrolling for in-page nav links)
+.
+|-- index.html                      # Page content and sections
+|-- Divyanshu_Agarwal_Resume.pdf    # Resume downloaded from the hero CTA
+`-- assets/
+	|-- css/
+	|   `-- style.css                # Global stylesheet
+	|-- images/                      # Local image assets
+	`-- js/
+		`-- app.js                   # Smooth scrolling for in-page anchors
 ```
 
 No build tools, package manager, or framework — plain HTML/CSS/JS.
