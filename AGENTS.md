@@ -1,27 +1,32 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+# Project Guide
 
 ## Overview
 
-This is a static one-page portfolio/marketing site (`divyanshuagarwal.github.io`) for a Digital Marketing Specialist. There is no build system, package manager, framework, or test suite — just plain HTML, CSS, and vanilla JS served directly.
+This repository is a static, one-page portfolio site for a Digital Marketing Specialist. It uses plain HTML, CSS, and vanilla JavaScript, with no package manager, framework, build step, linter, or automated test suite.
 
 ## Development
 
-There are no build/lint/test commands — this repo has no `package.json` or tooling of any kind. To work on the site, edit the files directly and open `index.html` in a browser (or serve the directory with any static file server, e.g. `npx serve .`) to preview changes.
+Edit the files directly and open `index.html` in a browser to preview the site. A static server such as `npx serve .` is optional when testing browser behavior locally.
+
+There is no compilation or automated validation command. After changes, confirm the page loads and check the affected desktop and mobile layout manually.
 
 ## Deployment
 
-Pushes to `main` trigger `.github/workflows/static.yml`, which uploads the entire repository as-is to GitHub Pages (no build step). Whatever is committed on `main` is what gets deployed.
+Pushes to `main`, or a manual workflow dispatch, run `.github/workflows/static.yml`. The workflow uploads the repository unchanged to GitHub Pages; every referenced file must therefore use a GitHub Pages-compatible relative path.
 
-## Architecture
+## Project Structure
 
-The entire site is one page, structured as three files:
+- `index.html` contains all page content in the `#app` wrapper. The DOM order is the visual order: `#hero`, `#about`, `#projects`, `#services`, `#tools`, `#clients`, `#why-hire`, and `#contact`. Navigation uses in-page anchors.
+- `assets/css/style.css` is the single global stylesheet. Keep section-specific rules in the same order as the HTML and place responsive overrides in the existing `max-width: 768px` block.
+- `assets/js/app.js` contains the site's vanilla JavaScript behavior, currently smooth scrolling for in-page anchors.
+- `assets/images/` stores local image assets. `5-Leaf-Clover.jpg` and `BlackClover.jpg` are currently unused; add image references with paths relative to `index.html`, such as `assets/images/<filename>`.
+- `Divyanshu_Agarwal_Resume.pdf` is the root-level resume file downloaded by the hero CTA.
+- `.github/workflows/static.yml` deploys the static site to GitHub Pages.
 
-- `index.html` — all content, laid out as a sequence of `<section>`s in a single `#app` div (hero → about → projects/case studies → services → tools/tech stack → clients → why-hire → contact/footer). Section order in the DOM is the page's visual order; nav links (`.glass-nav`) are anchor links (`#hero`, `#about`, etc.) into these sections.
-- `styles/style.css` — one global stylesheet, no preprocessor. Theme values (colors, fonts) are defined once as CSS custom properties in `:root` (`--bg-color`, `--text-color`, `--primary-color`, `--secondary-color`, `--glass-bg`, `--glass-border`, `--font-main`, `--font-heading`) — change the theme by editing these rather than hardcoding colors in new rules. Visual style is a dark "glassmorphism" look (`.glass-card`, `.glass-nav` use `backdrop-filter: blur(...)` over translucent backgrounds). CSS is organized in the same top-to-bottom order as the sections in `index.html`, plus a single mobile breakpoint (`max-width: 768px`) at the bottom.
-- `scripts/app.js` — minimal vanilla JS, currently just smooth-scroll behavior for in-page anchor links.
+## Styling Conventions
 
-External dependencies are all CDN-loaded in `<head>`: Google Fonts (Outfit) and Font Awesome icons. There is no local dependency management.
+Use the CSS custom properties in `:root` for colors, glass surfaces, and typography instead of adding repeated literal theme values. The established design is a dark, red-accented glassmorphism interface using `Outfit` for body copy and `Cinzel` for display headings.
 
-When adding a new section, follow the existing pattern: add a `<section id="...">` with a `.container` and `.section-title` inside `index.html`, add a corresponding block of rules to `style.css` in DOM order, and add a nav link if it should be reachable from `.glass-nav`.
+Reuse existing components and patterns where appropriate: `.container`, `.glass-nav`, `.glass-card`, `.btn`, `.btn-primary`, `.btn-outline`, and the fade-up animation delay classes. Font Awesome 6 icons and the Google-hosted Outfit and Cinzel fonts are loaded from CDNs in `index.html`; no local dependency installation is needed.
+
+When adding a section, give it a stable `id`, add its CSS in page order, provide mobile styling where needed, and add a navigation link only when it should be part of the primary navigation. Keep new resource paths relative to `index.html`.
