@@ -1,4 +1,4 @@
-# divyanshuagarwal.github.io
+# Divyanshu Agarwal | Portfolio
 
 Personal portfolio site for Divyanshu Agarwal, a Digital Marketing Specialist. A single-page site showcasing case studies, services, tools/tech stack, and contact info.
 
