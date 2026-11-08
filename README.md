@@ -9,10 +9,11 @@ Live at: https://divyanshuagarwal.github.io
 ```
 .
 |-- index.html                      # Page content and sections
-|-- Divyanshu_Agarwal_Resume.pdf    # Resume downloaded from the hero CTA
 `-- assets/
 	|-- css/
 	|   `-- style.css                # Global stylesheet
+	|-- documents/
+	|   `-- Divyanshu_Agarwal_Resume.pdf # Resume downloaded from the hero CTA
 	|-- images/                      # Local image assets
 	`-- js/
 		`-- app.js                   # Smooth scrolling for in-page anchors

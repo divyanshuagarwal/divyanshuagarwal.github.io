@@ -20,7 +20,7 @@ Pushes to `main`, or a manual workflow dispatch, run `.github/workflows/static.y
 - `assets/css/style.css` is the single global stylesheet. Keep section-specific rules in the same order as the HTML and place responsive overrides in the existing `max-width: 768px` block.
 - `assets/js/app.js` contains the site's vanilla JavaScript behavior, currently smooth scrolling for in-page anchors.
 - `assets/images/` stores local image assets. `5-Leaf-Clover.jpg` and `BlackClover.jpg` are currently unused; add image references with paths relative to `index.html`, such as `assets/images/<filename>`.
-- `Divyanshu_Agarwal_Resume.pdf` is the root-level resume file downloaded by the hero CTA.
+- `assets/documents/Divyanshu_Agarwal_Resume.pdf` is the resume file downloaded by the hero CTA.
 - `.github/workflows/static.yml` deploys the static site to GitHub Pages.
 
 ## Styling Conventions
